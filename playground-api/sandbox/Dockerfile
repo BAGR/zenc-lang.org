@@ -1,7 +1,7 @@
 # Stage 1: Build the latest Zen C compiler from source
 FROM alpine:3.23 as builder
 
-RUN apk add --no-cache git make gcc clang musl-dev
+RUN apk add --no-cache git make gcc musl-dev
 
 WORKDIR /zenc-build
 
@@ -11,10 +11,9 @@ ARG CACHEBUST=1
 # Clone the latest Zen C compiler
 RUN git clone https://github.com/zenc-lang/zenc.git .
 
-# Build the compiler
-# Assuming standard 'make' and 'make install' works for Zen C
-RUN make clean && make -j$(nproc)
-RUN make install
+# Build the compiler (no JIT — not needed for the playground sandbox)
+RUN make clean && make -j$(nproc) ZC_HAS_JIT=0
+RUN make install ZC_HAS_JIT=0
 
 
 # Stage 2: Create the minimal sandbox container
