@@ -71,20 +71,11 @@ let wav  = embed "sound.wav" as u8[];        // Incorporado como Slice_u8
 ```
 
 #### Plugins
-O Zen C suporta plugins nativos do Zen C (`.zc`) que estendem a sintaxe da linguagem por meio da geração de código em tempo de compilação. Os plugins agora podem fornecer documentação interativa ao passar o mouse (tooltips) para o Language Server (LSP).
-
+Importe plugins de compilação para sintaxe estendida
 ```zc
-import plugin "plugins/lisp" as lisp
-
-fn main() {
-    lisp! {
-        (defun square (x) (* x x))
-        (print (square 10))
-    }
-}
+import plugin "regex"
+let re = regex! { ^[a-z]+$ };
 ```
-
-Leia o **[Guia do Sistema de Plugins](../PLUGINS.md)** completo para mais detalhes.
 
 #### Macros Genéricos de C
 Passe macros pré-processamento para o C.
