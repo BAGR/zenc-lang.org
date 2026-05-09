@@ -863,7 +863,11 @@
                 keywords: [
                     'fn', 'def', 'let', 'if', 'else', 'while', 'loop', 'break', 'continue',
                     'return', 'match', 'impl', 'struct', 'enum', 'trait', 'import', 'extern',
-                    'pub', 'mut', 'const', 'type', 'self', 'Self'
+                    'union', 'use', 'alias', 'opaque', 'asm', 'unsafe', 'defer', 'for', 'do',
+                    'or', 'and', 'not', 'guard', 'unless', 'autofree',
+                    'async', 'await', 'launch',
+                    'test', 'assert', 'expect',
+                    'self', 'Self'
                 ],
                 typeKeywords: [
                     'int', 'float', 'bool', 'char', 'str', 'void', 'u8', 'u16', 'u32', 'u64',
@@ -873,7 +877,7 @@
                     '=', '>', '<', '!', '~', '?', ':', '==', '<=', '>=', '!=',
                     '&&', '||', '++', '--', '+', '-', '*', '/', '&', '|', '^', '%',
                     '<<', '>>', '>>>', '+=', '-=', '*=', '/=', '&=', '|=', '^=',
-                    '%=', '<<=', '>>=', '>>>=', '->', '=>'
+                    '%=', '<<=', '>>=', '>>>=', '->', '=>', '|>', '??', '?.'
                 ],
                 symbols: /[=><!~?:&|+\-*\/\^%]+/,
                 tokenizer: {
