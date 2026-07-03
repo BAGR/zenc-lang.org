@@ -72,7 +72,7 @@ jobs:
       - name: Sync and Reload Caddy Configuration
         run: |
           # Sync Caddyfile to the VPS and reload service
-          rsync -avz -e "ssh -i ~/.ssh/deploy_key" Caddyfile ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/tmp/Caddyfile
+          rsync -avz -e "ssh -i ~/.ssh/deploy_key" www/Caddyfile ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }}:/tmp/Caddyfile
           ssh -i ~/.ssh/deploy_key ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "sudo mv /tmp/Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy"
           
       - name: Restart Backend Services
@@ -115,6 +115,7 @@ jobs:
               git fetch origin --prune --tags --force
               sudo chown -R $USER:www-data /var/www/git/Zen-C.git
               sudo chmod -R g+rX /var/www/git/Zen-C.git
+              git config --system --add safe.directory /var/www/git/Zen-C.git
             fi
           "
 
