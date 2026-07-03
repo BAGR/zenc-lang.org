@@ -24,6 +24,20 @@ git.zenc-lang.org {
     # Serve the file
     file_server
 
+    # Handle git smart HTTP protocol (clone/pull/push)
+    @git-http {
+        path /Zen-C.git/*
+    }
+    handle @git-http {
+        reverse_proxy unix//run/fcgiwrap.socket {
+            transport fastcgi {
+                env SCRIPT_FILENAME /usr/lib/git-core/git-http-backend
+                env GIT_PROJECT_ROOT /var/www/git
+                env GIT_HTTP_EXPORT_ALL ""
+            }
+        }
+    }
+
     # Send everything else to cgit backend
     @backend {
         not path *.css *.png *.ico

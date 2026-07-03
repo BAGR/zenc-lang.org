@@ -12,3 +12,4 @@ favicon=/favicon.ico
 # Mirror settings
 repo.branch=main
 repo.readme=main:README.md
+enable-http-clone=1
