@@ -115,8 +115,8 @@ jobs:
               git fetch origin --prune --tags --force
               sudo chown -R $USER:www-data /var/www/git/Zen-C.git
               sudo chmod -R g+rX /var/www/git/Zen-C.git
-              git config --system --add safe.directory /var/www/git/Zen-C.git
             fi
+            git config --system --add safe.directory /var/www/git/Zen-C.git || true
           "
 
       - name: Sync and Link Mirror Infrastructure
